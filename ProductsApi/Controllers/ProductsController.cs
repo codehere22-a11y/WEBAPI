@@ -20,10 +20,10 @@ public class ProductsController : ControllerBase
     public async Task<IActionResult> GetAll()
     {
         var products = await _context.Products.ToListAsync();
-        Console.WriteLine($"Rows pulled from DB: {products.Count}");  
-        var filtered = products.Where(p => p.Category.Name == "Software Engineer").ToList();
+        Console.WriteLine($"Rows pulled from DB: {products.Count}");
+        var filtered = products;
         Console.WriteLine($"Filtered products count: {filtered.Count}");
-        return Ok(filtered);
+        return Ok(products);
     }
 
     [HttpGet("{id}")]
@@ -38,8 +38,8 @@ public class ProductsController : ControllerBase
     {
         var query = _context.Products.AsQueryable();
 
-        if (!string.IsNullOrEmpty(category))
-            query = query.Where(p => p.Category.Name == category);
+        if (!string.IsNullOrEmpty(category) && int.TryParse(category, out var categoryId))
+            query = query.Where(p => p.CategoryId == categoryId);
 
         if (maxId.HasValue)
             query = query.Where(p => p.Id <= maxId.Value);
@@ -54,12 +54,12 @@ public class ProductsController : ControllerBase
         if (string.IsNullOrWhiteSpace(dto.Name))
             return BadRequest("Name is required.");
 
-        var newProduct = new Product { Name = dto.Name, Category = new Category(0, dto.Category) };
+        var newProduct = new Product { Name = dto.Name, CategoryId = dto.CategoryId };
 
         _context.Products.Add(newProduct);
         await _context.SaveChangesAsync();
 
-        var resultDto = new ProductDto(newProduct.Id, newProduct.Name, newProduct.Category.Name);
+        var resultDto = new ProductDto(newProduct.Id, newProduct.Name, newProduct.CategoryId);
         return CreatedAtAction(nameof(GetById), new { id = newProduct.Id }, resultDto);
     }
 
@@ -70,7 +70,7 @@ public class ProductsController : ControllerBase
         if (product is null) return NotFound();
 
         product.Name = dto.Name;
-        product.Category.Name = dto.Category;
+        product.CategoryId = dto.CategoryId;
         await _context.SaveChangesAsync();
 
         return NoContent();
