@@ -164,3 +164,4 @@ D:\I\shubham\Practices\C#\WebAPI\ProductsApi\obj\Debug\net9.0\ProductsApi.pdb
 D:\I\shubham\Practices\C#\WebAPI\ProductsApi\obj\Debug\net9.0\ProductsApi.genruntimeconfig.cache
 D:\I\shubham\Practices\C#\WebAPI\ProductsApi\obj\Debug\net9.0\ref\ProductsApi.dll
 D:\I\shubham\Practices\C#\WebAPI\ProductsApi\obj\Debug\net9.0\ProductsApi.sourcelink.json
+D:\I\shubham\Practices\C#\WebAPI\ProductsApi\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
