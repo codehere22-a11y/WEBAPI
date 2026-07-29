@@ -15,7 +15,45 @@ public class ProductsController : ControllerBase
     {
         _context = context;
     }
+[HttpPost("{productId}/tags/{tagId}")]
+public async Task<IActionResult> AddTagToProduct(int productId, int tagId)
+{
+    var product = await _context.Products
+        .Include(p => p.Tags)
+        .FirstOrDefaultAsync(p => p.Id == productId);
 
+    if (product is null) return NotFound("Product not found.");
+
+    var tag = await _context.Tags.FindAsync(tagId);
+    if (tag is null) return NotFound("Tag not found.");
+
+    if (product.Tags.Any(t => t.Id == tagId))
+        return Conflict("This product already has that tag.");
+
+    product.Tags.Add(tag);
+    await _context.SaveChangesAsync();
+
+    return NoContent();
+}
+
+[HttpGet("{id}/with-tags")]
+public async Task<IActionResult> GetByIdWithTags(int id)
+{
+    var product = await _context.Products
+        .Include(p => p.Tags)
+        .FirstOrDefaultAsync(p => p.Id == id);
+
+    if (product is null) return NotFound();
+
+    var result = new
+    {
+        product.Id,
+        product.Name,
+        Tags = product.Tags.Select(t => t.Name)
+    };
+
+    return Ok(result);
+}   
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
@@ -25,6 +63,31 @@ public class ProductsController : ControllerBase
         Console.WriteLine($"Filtered products count: {filtered.Count}");
         return Ok(products);
     }
+[HttpGet("with-categories-n-plus-one")]
+public async Task<IActionResult> GetAllWithCategoriesNPlusOne()
+{
+    var products = await _context.Products.ToListAsync();  // query #1
+
+    foreach (var p in products)
+    {
+        await _context.Entry(p).Reference(pr => pr.Category).LoadAsync();  // one query PER product
+    }
+
+    var result = products.Select(p => new { p.Id, p.Name, Category = p.Category?.Name });
+    return Ok(result);
+}
+
+[HttpGet("with-categories-included")]
+public async Task<IActionResult> GetAllWithCategoriesIncluded()
+{
+    var products = await _context.Products
+        .Include(p => p.Category)
+        .ToListAsync();  // ONE query, with a JOIN
+
+    var result = products.Select(p => new { p.Id, p.Name, Category = p.Category?.Name });
+    return Ok(result);
+}
+
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)

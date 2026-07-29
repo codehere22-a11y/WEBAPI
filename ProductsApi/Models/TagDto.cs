@@ -1,0 +1,1 @@
+public record CreateTagDto(string Name);

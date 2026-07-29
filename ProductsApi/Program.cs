@@ -11,6 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+   // .LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
