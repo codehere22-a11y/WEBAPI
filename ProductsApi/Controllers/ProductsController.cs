@@ -2,7 +2,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProductsApi.Data;
-using ProductsApi.Models;
+using ProductsApi.Domain;   // Product, Category, Tag
+using ProductsApi.Models;   // CreateProductDto, ProductDto, CreateCategoryDto
 
 namespace ProductsApi.Controllers;
 

@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using ProductsApi.Data;
 using ProductsApi.Models;
 using Microsoft.EntityFrameworkCore;
-
+using ProductsApi.Domain; 
 [ApiController]
 [Route("api/[controller]")]
 public class CategoriesController : ControllerBase

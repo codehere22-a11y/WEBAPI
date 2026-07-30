@@ -1,6 +1,8 @@
 // Data/AppDbContext.cs
 using Microsoft.EntityFrameworkCore;
-using ProductsApi.Models;
+using ProductsApi.Domain;
+
+
 
 namespace ProductsApi.Data;
 

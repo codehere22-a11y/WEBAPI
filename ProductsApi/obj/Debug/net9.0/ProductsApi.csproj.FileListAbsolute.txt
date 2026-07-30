@@ -165,3 +165,9 @@ D:\I\shubham\Practices\C#\WebAPI\ProductsApi\obj\Debug\net9.0\ProductsApi.genrun
 D:\I\shubham\Practices\C#\WebAPI\ProductsApi\obj\Debug\net9.0\ref\ProductsApi.dll
 D:\I\shubham\Practices\C#\WebAPI\ProductsApi\obj\Debug\net9.0\ProductsApi.sourcelink.json
 D:\I\shubham\Practices\C#\WebAPI\ProductsApi\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\I\shubham\Practices\C#\WebAPI\ProductsApi\bin\Debug\net9.0\ProductsApi.Application.dll
+D:\I\shubham\Practices\C#\WebAPI\ProductsApi\bin\Debug\net9.0\ProductsApi.Domain.dll
+D:\I\shubham\Practices\C#\WebAPI\ProductsApi\bin\Debug\net9.0\ProductsApi.Infrastructure.dll
+D:\I\shubham\Practices\C#\WebAPI\ProductsApi\bin\Debug\net9.0\ProductsApi.Domain.pdb
+D:\I\shubham\Practices\C#\WebAPI\ProductsApi\bin\Debug\net9.0\ProductsApi.Application.pdb
+D:\I\shubham\Practices\C#\WebAPI\ProductsApi\bin\Debug\net9.0\ProductsApi.Infrastructure.pdb

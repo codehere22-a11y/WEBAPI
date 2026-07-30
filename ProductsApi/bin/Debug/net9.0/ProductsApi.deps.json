@@ -12,7 +12,10 @@
           "Microsoft.AspNetCore.OpenApi": "9.0.6",
           "Microsoft.EntityFrameworkCore.Design": "9.0.14",
           "Microsoft.EntityFrameworkCore.SqlServer": "9.0.14",
-          "Microsoft.EntityFrameworkCore.Tools": "9.0.14"
+          "Microsoft.EntityFrameworkCore.Tools": "9.0.14",
+          "ProductsApi.Application": "1.0.0",
+          "ProductsApi.Domain": "1.0.0",
+          "ProductsApi.Infrastructure": "1.0.0"
         },
         "runtime": {
           "ProductsApi.dll": {}
@@ -1017,6 +1020,36 @@
             "fileVersion": "6.0.21.52210"
           }
         }
+      },
+      "ProductsApi.Application/1.0.0": {
+        "dependencies": {
+          "ProductsApi.Domain": "1.0.0"
+        },
+        "runtime": {
+          "ProductsApi.Application.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "ProductsApi.Domain/1.0.0": {
+        "runtime": {
+          "ProductsApi.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "ProductsApi.Infrastructure/1.0.0": {
+        "dependencies": {
+          "ProductsApi.Application": "1.0.0"
+        },
+        "runtime": {
+          "ProductsApi.Infrastructure.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -1564,6 +1597,21 @@
       "sha512": "sha512-IXoJOXIqc39AIe+CIR7koBtRGMiCt/LPM3lI+PELtDIy9XdyeSrwXFdWV9dzJ2Awl0paLWUaknLxFQ5HpHZUog==",
       "path": "system.windows.extensions/6.0.0",
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
+    },
+    "ProductsApi.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ProductsApi.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ProductsApi.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

@@ -33,7 +33,7 @@ public class AuthController : ControllerBase
 //{
     var claims = new[] { new Claim(ClaimTypes.Name, dto.Username), 
     new Claim(ClaimTypes.Role, "Customer"),
-      new Claim("age", "15")  };
+      new Claim("age", "25")  };
     // ...rest same as before, build token with these claims
 //}
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]!));

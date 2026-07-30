@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProductsApi.Data;
 using ProductsApi.Models;
-
+using ProductsApi.Domain;   // for Tag
 namespace ProductsApi.Controllers;
 
 [ApiController]
