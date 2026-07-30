@@ -31,7 +31,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("MinimumAge", policy =>
+        policy.RequireAssertion(context =>
+            context.User.HasClaim(c => c.Type == "age") &&
+            int.Parse(context.User.FindFirst("age")!.Value) >= 18));
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

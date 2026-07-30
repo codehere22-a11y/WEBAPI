@@ -21,15 +21,21 @@ public class AuthController : ControllerBase
     public IActionResult Login([FromBody] LoginDto dto)
     {
         // Fake check for now — replace with real DB lookup once you have a Users table
-        if (dto.Username != "admin" || dto.Password != "password123")
+      /*  if (dto.Username != "admin" || dto.Password != "password123")
             return Unauthorized("Invalid credentials.");
 
         var claims = new[]
         {
             new Claim(ClaimTypes.Name, dto.Username),
             new Claim(ClaimTypes.Role, "Admin")
-        };
-
+        };*/
+//if (dto.Username == "user" && dto.Password == "userpass")
+//{
+    var claims = new[] { new Claim(ClaimTypes.Name, dto.Username), 
+    new Claim(ClaimTypes.Role, "Customer"),
+      new Claim("age", "15")  };
+    // ...rest same as before, build token with these claims
+//}
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]!));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 

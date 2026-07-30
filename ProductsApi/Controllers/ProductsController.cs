@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProductsApi.Data;
@@ -110,7 +111,7 @@ public async Task<IActionResult> GetAllWithCategoriesIncluded()
         var results = await query.ToListAsync();
         return Ok(results);
     }
-
+[Authorize(Roles = "Admin")]
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateProductDto dto)
     {
@@ -126,6 +127,13 @@ public async Task<IActionResult> GetAllWithCategoriesIncluded()
         return CreatedAtAction(nameof(GetById), new { id = newProduct.Id }, resultDto);
     }
 
+[Authorize(Policy = "MinimumAge")]
+[HttpGet("age-restricted-test")]
+public IActionResult AgeRestrictedTest()
+{
+    return Ok("You're old enough to see this.");
+}    
+[Authorize(Roles = "Admin")]
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(int id, [FromBody] CreateProductDto dto)
     {
@@ -138,7 +146,7 @@ public async Task<IActionResult> GetAllWithCategoriesIncluded()
 
         return NoContent();
     }
-
+[Authorize(Roles = "Admin")]
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
